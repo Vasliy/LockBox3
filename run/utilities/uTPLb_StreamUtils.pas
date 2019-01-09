@@ -367,7 +367,7 @@ for P := 0 to (Length( Base64) div 4) - 1 do
       Dec( BitIdx, 8);
       Inc( ByteIdx);
       if BitIdx > 0 then
-        ThreeBytes[ByteIdx] := ThreeBytes[ByteIdx] + (Bits6 shl (8 - BitIdx));
+        ThreeBytes[ByteIdx] := ThreeBytes[ByteIdx] + byte(Bits6 shl (8 - BitIdx));
       end
     end;
   Destin.WriteBuffer( ThreeBytes, ByteIdx)

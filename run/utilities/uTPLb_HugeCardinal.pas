@@ -1415,7 +1415,7 @@ if ((ShiftBitsLeft + ShiftBitsRight) > 0) and (FBits > 0) then
                     b8_1 := 0;
                 b8_2  := Carry;
                 Carry := b8_1;
-                b8_1  := P8^ shl ShiftAmnt;
+                b8_1  := byte(P8^ shl ShiftAmnt);
                 P8^   := b8_1 or b8_2;
                 Inc( P8);
                 Dec( Remaining)
@@ -1447,7 +1447,7 @@ if ((ShiftBitsLeft + ShiftBitsRight) > 0) and (FBits > 0) then
                 end
               else
                 begin
-                b8_1 := P8^ shl ShiftComp8;
+                b8_1 := byte(P8^ shl ShiftComp8);
                 b8_2  := Carry;
                 Carry := b8_1;
                 b8_1  := P8^ shr ShiftAmnt;
@@ -1468,7 +1468,8 @@ end;
 procedure THugeCardinal.MulSmall( Factor: uint32);
 var
   Done: boolean;
-  PoweredFactor, Power, iFactor: integer;
+  PoweredFactor, Power: integer;
+  iFactor: uint32;
   j: Integer;
   DataLen, Remaining: integer;
   P32: ^uint32;
